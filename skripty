@@ -92,3 +92,22 @@ SUMX(
     SELECTEDVALUE(data[lokalita])),
 data[srazky]) <0,"RED","BLUE")
 
+_____________________________________________
+
+14 typ srazek = 
+
+
+-- Pokud je vybranou hodnotou z prurezu
+-- "kumulativne", tak pocitame srazky
+-- kumulativne, jnak prubezne
+
+IF(
+    SELECTEDVALUE(typ_hodnoty[hodnota])
+    = "kumulativne",
+SUMX(
+    FILTER(
+        ALL(data),
+    data[rok] <= SELECTEDVALUE(data[rok])),
+data[srazky]),
+
+SUM(data[srazky]))
