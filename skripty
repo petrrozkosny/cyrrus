@@ -1,5 +1,8 @@
-02 suma srazek ruzyne = 
 
+01 suma srazek = SUM(data[srazky])
+
+_____________________________________________________________________________________________
+02 suma srazek ruzyne = 
 SUMX(
     --krok3: Funkce FILTER() vraci tabulku
     FILTER(
@@ -9,6 +12,36 @@ SUMX(
     --krok2: Funkce FILTER() nastavuje filtr
     -- nad sloupec [lokalita]
     data[lokalita] = "RUZYNE"),
+--krok4: Funkce SUMX() agreguje tabulku
+-- vracenou funkci FILTER()
+data[srazky])
+
+
+___________________________________________________________________________________
+
+03 suma srazek vse = 
+
+SUMX(
+    --krok1: Funkce ALL() vraci tabulku zbavenou
+    -- vsech filtru
+    ALL(data),
+--krok2: Funkce SUMX() agreguje tabulku
+-- vracenou funkci ALL()
+data[srazky])
+
+___________________________________________________________________________________
+
+04 suma srazek rok 2000 = 
+
+SUMX(
+    --krok3: Funkce FILTER() vraci tabulku
+    FILTER(
+    --krok1: Funkce ALL() vraci tabulku
+     -- data zbavenou vsech filtru
+        ALL(data),
+    --krok2: Funkce FILTER() aplikuje
+    -- filtr na sloupec [rok]
+    data[rok] = 2000),
 --krok4: Funkce SUMX() agreguje tabulku
 -- vracenou funkci FILTER()
 data[srazky])
