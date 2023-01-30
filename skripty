@@ -54,3 +54,24 @@ SUMX(
         ALL(data),
     data[rok] <= SELECTEDVALUE(data[rok])),
 data[srazky])
+
+
+
+
+____________________________________________________________________________
+
+07 suma srazek vs minimalni rok = 
+
+-- suma srazek v danem roce
+SUM(data[srazky])
+-- MÍNUS
+-
+-- suma srazek v minimalnim roce
+
+SUMX(
+    FILTER(
+        ALL(data),
+    data[rok] = 
+        MINX(ALL(data),data[rok])),
+data[srazky])
+
