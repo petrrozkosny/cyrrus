@@ -1,0 +1,14 @@
+02 suma srazek ruzyne = 
+
+SUMX(
+    --krok3: Funkce FILTER() vraci tabulku
+    FILTER(
+     --krok1: Funkce FILTER() prebira tabulku
+    -- data filtrovanou vizualem       
+    data,
+    --krok2: Funkce FILTER() nastavuje filtr
+    -- nad sloupec [lokalita]
+    data[lokalita] = "RUZYNE"),
+--krok4: Funkce SUMX() agreguje tabulku
+-- vracenou funkci FILTER()
+data[srazky])
