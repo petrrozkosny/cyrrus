@@ -45,3 +45,12 @@ SUMX(
 --krok4: Funkce SUMX() agreguje tabulku
 -- vracenou funkci FILTER()
 data[srazky])
+
+___________________________
+
+06 suma srazek kumulativne = 
+SUMX(
+    FILTER(
+        ALL(data),
+    data[rok] <= SELECTEDVALUE(data[rok])),
+data[srazky])
