@@ -75,3 +75,20 @@ SUMX(
         MINX(ALL(data),data[rok])),
 data[srazky])
 
+_______________________
+
+09 srazky mezirocne formatovani = 
+IF(
+-- suma srazek v danem roce a lokalite
+sum(data[srazky])
+-- MINUS
+-
+-- suma srazek v predchozim roce a lokalite
+SUMX(
+    FILTER(
+        ALL(data),
+    data[rok] = SELECTEDVALUE(data[rok]) - 1
+    && data[lokalita] = 
+    SELECTEDVALUE(data[lokalita])),
+data[srazky]) <0,"RED","BLUE")
+
