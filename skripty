@@ -111,3 +111,43 @@ SUMX(
 data[srazky]),
 
 SUM(data[srazky]))
+
+
+
+___________________________________________
+
+dim_datumy = 
+ADDCOLUMNS(
+ADDCOLUMNS(
+SELECTCOLUMNS(
+    CALENDARAUTO(),"datum",[Date]),
+"rok",year([datum]),
+"kvartal",QUARTER([datum]),
+"mesic",MONTH([datum]),
+"den_mesice",DAY([datum]),
+"den_tydne",WEEKDAY([datum],2),
+"cislo_tydne",WEEKNUM([datum],21),
+"statni_svatek",
+SWITCH(TRUE(),
+MONTH([datum]) = 1 && DAY([datum]) = 1, TRUE(),
+MONTH([datum]) = 5 && DAY([datum]) = 1, TRUE(),
+MONTH([datum]) = 5 && DAY([datum]) = 8, TRUE(),
+MONTH([datum]) = 7 && DAY([datum]) = 5, TRUE(),
+MONTH([datum]) = 7 && DAY([datum]) = 6, TRUE(),
+MONTH([datum]) = 9 && DAY([datum]) = 28, TRUE(),
+MONTH([datum]) = 10 && DAY([datum]) = 28, TRUE(),
+MONTH([datum]) = 11 && DAY([datum]) = 17, TRUE(),
+MONTH([datum]) = 12 && DAY([datum]) = 24, TRUE(),
+MONTH([datum]) = 12 && DAY([datum]) = 25, TRUE(),
+MONTH([datum]) = 12 && DAY([datum]) = 26, TRUE(),
+[datum] = date(2021,04,02),TRUE(),
+[datum] = date(2021,04,05),TRUE(),
+[datum] = date(2022,04,15),TRUE(),
+[datum] = date(2022,04,18),TRUE(),
+[datum] = date(2023,04,07),TRUE(),
+[datum] = date(2023,04,10),TRUE(),
+
+FALSE())),
+"obchodni_den",
+IF([den_tydne]<6 && [statni_svatek]=FALSE(),TRUE(),FALSE())
+)
