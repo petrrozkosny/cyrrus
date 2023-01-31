@@ -151,3 +151,16 @@ FALSE())),
 "obchodni_den",
 IF([den_tydne]<6 && [statni_svatek]=FALSE(),TRUE(),FALSE())
 )
+
+
+_______________________________________________________________________
+
+23 suma srazek predchozi rok = 
+
+SUMX(
+    FILTER(
+        ALL(data),
+    data[rok] = SELECTEDVALUE(data[rok]) - 1
+    && data[lokalita] = SELECTEDVALUE(data[lokalita])
+    && data[mesic]  = SELECTEDVALUE(data[mesic])),
+data[srazky])
